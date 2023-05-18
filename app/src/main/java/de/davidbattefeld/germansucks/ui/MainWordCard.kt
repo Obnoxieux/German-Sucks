@@ -14,7 +14,7 @@ fun MainWordCard() {
     Card(modifier = Modifier
         .padding(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
         )) {
         Text("German really sucks!")
     }
