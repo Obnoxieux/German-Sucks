@@ -20,12 +20,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import de.davidbattefeld.germansucks.ui.theme.GermanSucksTheme
+import de.davidbattefeld.germansucks.ui.viewmodels.MainWordViewModel
 
 @Composable
 fun MainWordCard(
     word: String
 ) {
+    val vm = viewModel<MainWordViewModel>()
     ElevatedCard(
         modifier = Modifier,
         colors = CardDefaults.cardColors(
@@ -54,7 +57,7 @@ fun MainWordCard(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Button(onClick = { /* Do something! */ }) { Text("Look up") }
-                OutlinedButton(onClick = { /* Do something! */ }) { Text("Copy word") }
+                OutlinedButton(onClick = { vm.copyWordToClipboard() }) { Text("Copy word") }
             }
         }
     }

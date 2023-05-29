@@ -38,7 +38,7 @@ fun MainScreen(
     Scaffold(
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = { /* do something */ },
+                onClick = { mainWordViewModel.setCurrentWord() },
                 expanded = true,
                 icon = { Icon(Icons.Filled.AutoAwesome, "Localized Description") },
                 text = { Text(text = "Load a new random German word") },
