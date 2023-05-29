@@ -15,6 +15,7 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,10 +24,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import de.davidbattefeld.germansucks.ui.theme.GermanSucksTheme
 import de.davidbattefeld.germansucks.ui.viewmodels.MainWordViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun MainWordCard(
-    word: String
+    word: String,
+    //TODO: move this to ViewModel
+    snackbarHostState: SnackbarHostState,
+    scope: CoroutineScope,
 ) {
     val vm = viewModel<MainWordViewModel>()
     ElevatedCard(
@@ -57,7 +63,12 @@ fun MainWordCard(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Button(onClick = { /* Do something! */ }) { Text("Look up") }
-                OutlinedButton(onClick = { vm.copyWordToClipboard() }) { Text("Copy word") }
+                OutlinedButton(onClick = {
+                    scope.launch {
+                        snackbarHostState.showSnackbar("Copied to clipboard!")
+                    }
+                    vm.copyWordToClipboard()
+                }) { Text("Copy word") }
             }
         }
     }
@@ -76,6 +87,6 @@ fun MainWordCard(
 @Composable
 fun MainWordCardPreview() {
     GermanSucksTheme {
-        MainWordCard(word = "Inhaberschuldverschreibung")
+        //MainWordCard(word = "Inhaberschuldverschreibung")
     }
 }
