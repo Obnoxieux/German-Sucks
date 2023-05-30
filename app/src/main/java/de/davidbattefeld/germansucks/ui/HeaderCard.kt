@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun HeaderCard() {
     val explanationText by remember {
-        mutableStateOf("This app loads a random, nightmarishly long word for your personal enjoyment. Data is taken from a crawl of German news articles from 2022.")
+        mutableStateOf("This app loads a random, nightmarishly long word for your personal enjoyment. Data is taken from a comprehensive collection of German words longer than 25 characters.")
     }
     Card(
         modifier = Modifier,

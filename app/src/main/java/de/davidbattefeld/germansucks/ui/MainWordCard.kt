@@ -1,6 +1,7 @@
 package de.davidbattefeld.germansucks.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -34,6 +36,7 @@ fun MainWordCard(
     snackbarHostState: SnackbarHostState,
     scope: CoroutineScope,
 ) {
+    val context = LocalContext.current
     val vm = viewModel<MainWordViewModel>()
     ElevatedCard(
         modifier = Modifier,
@@ -55,20 +58,23 @@ fun MainWordCard(
             Text("Your word is...")
             Text(
                 word,
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(vertical = 12.dp)
             )
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(onClick = { /* Do something! */ }) { Text("Look up") }
-                OutlinedButton(onClick = {
-                    scope.launch {
-                        snackbarHostState.showSnackbar("Copied to clipboard!")
-                    }
-                    vm.copyWordToClipboard()
-                }) { Text("Copy word") }
+                Button(onClick = { vm.lookupWordOnline(context = context) }) { Text("Look up") }
+                OutlinedButton(
+                    onClick = {
+                        scope.launch {
+                            snackbarHostState.showSnackbar("Copied to clipboard!")
+                        }
+                        vm.copyWordToClipboard()
+                    },
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.onPrimaryContainer)
+                ) { Text("Copy word") }
             }
         }
     }

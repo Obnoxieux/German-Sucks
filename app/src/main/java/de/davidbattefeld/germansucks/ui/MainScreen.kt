@@ -6,13 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
@@ -31,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import de.davidbattefeld.germansucks.ui.theme.GermanSucksTheme
 import de.davidbattefeld.germansucks.ui.viewmodels.MainWordViewModel
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +71,7 @@ fun MainScreen(
 
                 },
                 actions = {
-                    IconButton(onClick = {
+                    /*IconButton(onClick = {
                         scope.launch {
                             snackbarHostState.showSnackbar("Heart button clicked")
                         }
@@ -85,7 +81,7 @@ fun MainScreen(
                             contentDescription = "Localized description",
                             tint = MaterialTheme.colorScheme.primary
                         )
-                    }
+                    }*/
                 },
                 scrollBehavior = scrollBehavior
             )
@@ -105,7 +101,7 @@ fun MainScreen(
                     snackbarHostState = snackbarHostState,
                     scope = scope
                 )
-                FavoritesCard()
+                ShareCard()
             }
         }
     )
