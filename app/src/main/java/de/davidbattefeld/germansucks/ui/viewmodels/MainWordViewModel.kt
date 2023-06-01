@@ -12,6 +12,7 @@ import de.davidbattefeld.germansucks.classes.WordProvider
 class MainWordViewModel(private val application: Application) : GenericViewModel(application) {
     //Totally not gonna work when they change their website, but well...
     private val DUDEN_WEBSITE_URL = "https://www.duden.de/suchen/dudenonline/"
+    private val DEEPL_URL = "https://www.deepl.com/translator#de/en/"
 
     var currentWord = mutableStateOf("No word loaded")
     private val wordProvider = WordProvider(context = application.applicationContext)
@@ -27,7 +28,7 @@ class MainWordViewModel(private val application: Application) : GenericViewModel
     }
 
     fun lookupWordOnline(context: Context) {
-        val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse(DUDEN_WEBSITE_URL + currentWord.value))
+        val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse(DEEPL_URL + currentWord.value))
         context.startActivity(urlIntent)
     }
 
