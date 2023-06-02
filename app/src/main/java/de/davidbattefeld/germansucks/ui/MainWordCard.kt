@@ -62,10 +62,19 @@ fun MainWordCard(
                 modifier = Modifier
                     .padding(vertical = 12.dp)
             )
+            Text("Action:", style = MaterialTheme.typography.labelLarge)
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(onClick = { vm.lookupWordOnline(context = context) }) { Text("Look up") }
+                Button(onClick = { vm.lookupWordOnline(
+                    context = context,
+                    service = MainWordViewModel.Service.DEEPL
+                    )
+                }) { Text("DeepL") }
+                Button(onClick = { vm.lookupWordOnline(
+                    context = context,
+                    service = MainWordViewModel.Service.GOOGLE_TRANSLATE)
+                }) { Text("G Translate") }
                 OutlinedButton(
                     onClick = {
                         scope.launch {
@@ -74,7 +83,7 @@ fun MainWordCard(
                         vm.copyWordToClipboard()
                     },
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.onPrimaryContainer)
-                ) { Text("Copy word") }
+                ) { Text("Copy") }
             }
         }
     }

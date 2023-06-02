@@ -10,9 +10,14 @@ import androidx.compose.runtime.mutableStateOf
 import de.davidbattefeld.germansucks.classes.WordProvider
 
 class MainWordViewModel(private val application: Application) : GenericViewModel(application) {
+    enum class Service {
+        DEEPL, GOOGLE_TRANSLATE, DUDEN
+    }
+
     //Totally not gonna work when they change their website, but well...
-    private val DUDEN_WEBSITE_URL = "https://www.duden.de/suchen/dudenonline/"
+    private val DUDEN_URL = "https://www.duden.de/suchen/dudenonline/"
     private val DEEPL_URL = "https://www.deepl.com/translator#de/en/"
+    private val GOOGLE_TRANSLATE_URL = "https://translate.google.com/?sl=de&tl=en&text="
 
     var currentWord = mutableStateOf("No word loaded")
     private val wordProvider = WordProvider(context = application.applicationContext)
@@ -27,8 +32,13 @@ class MainWordViewModel(private val application: Application) : GenericViewModel
         clipboardManager.setPrimaryClip(clip)
     }
 
-    fun lookupWordOnline(context: Context) {
-        val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse(DEEPL_URL + currentWord.value))
+    fun lookupWordOnline(context: Context, service: Service) {
+        val url: String = when (service) {
+            Service.DEEPL -> DEEPL_URL
+            Service.GOOGLE_TRANSLATE -> GOOGLE_TRANSLATE_URL
+            Service.DUDEN -> DUDEN_URL
+        }
+        val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url + currentWord.value))
         context.startActivity(urlIntent)
     }
 
