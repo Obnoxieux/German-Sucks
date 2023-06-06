@@ -14,5 +14,5 @@
 .cxx
 local.properties
 /.idea
-/app/src/main/py/
-/app/release/
+/shared/build/
+/iosApp/German Sucks iOS.xcodeproj/project.xcworkspace/xcuserdata/

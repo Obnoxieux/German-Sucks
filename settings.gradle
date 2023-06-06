@@ -13,4 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "German Sucks"
-include ':app'
+include ':androidApp'
+include ':shared'
