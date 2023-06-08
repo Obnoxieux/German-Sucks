@@ -16,11 +16,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.davidbattefeld.germansucks.shared.global.Constants
 
 @Composable
 fun HeaderCard() {
     val explanationText by remember {
-        mutableStateOf("This app loads a random, nightmarishly long word for your personal enjoyment. Data is taken from a comprehensive collection of German words longer than 25 characters.")
+        mutableStateOf(Constants().getExplanationText())
     }
     Card(
         modifier = Modifier,

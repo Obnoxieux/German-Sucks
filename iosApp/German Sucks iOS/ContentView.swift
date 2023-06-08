@@ -10,13 +10,33 @@ import shared
 
 struct ContentView: View {
     var body: some View {
-        Text(Greeting().greet())
-            .padding()
+        switch UIDevice.current.userInterfaceIdiom {
+            case .pad, .mac:
+                //TODO: add layout for big screens
+                EmptyView()
+            case .phone:
+                TabView {
+                    NavigationStack {
+                        MainWordView()
+                    }
+                        .tabItem {
+                            Label("Word", systemImage: "book")
+                                
+                        }
+                    Text("Not implemented yet")
+                        .tabItem {
+                            Label("Favorite", systemImage: "star.bubble")
+                        }
+                }
+            default:
+                EmptyView()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            //.preferredColorScheme(.dark)
     }
 }
