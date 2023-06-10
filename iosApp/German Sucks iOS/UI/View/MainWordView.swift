@@ -10,7 +10,7 @@ import shared
 
 struct MainWordView: View {
     var body: some View {
-        VStack(spacing: 15) {
+        VStack(alignment: .leading, spacing: 15) {
             ExplanationCard()
             MainWordCard()
             ShareCard()
