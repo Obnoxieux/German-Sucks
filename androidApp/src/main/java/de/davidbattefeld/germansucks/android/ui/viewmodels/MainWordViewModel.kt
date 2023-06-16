@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
-import de.davidbattefeld.germansucks.android.classes.WordProvider
+import de.davidbattefeld.germansucks.shared.classes.WordProviderPlatform
 
 class MainWordViewModel(private val application: Application) : GenericViewModel(application) {
     enum class Service {
@@ -20,7 +20,7 @@ class MainWordViewModel(private val application: Application) : GenericViewModel
     private val GOOGLE_TRANSLATE_URL = "https://translate.google.com/?sl=de&tl=en&text="
 
     var currentWord = mutableStateOf("No word loaded")
-    private val wordProvider = WordProvider(context = application.applicationContext)
+    private val wordProvider = WordProviderPlatform(context = application.applicationContext)
 
     fun setCurrentWord() {
         currentWord.value = wordProvider.getRandomWord()

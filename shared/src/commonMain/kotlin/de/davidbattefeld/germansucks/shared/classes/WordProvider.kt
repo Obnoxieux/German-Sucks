@@ -1,18 +1,16 @@
-package de.davidbattefeld.germansucks.android.classes
+package de.davidbattefeld.germansucks.shared.classes
 
-import android.content.Context
-
-class WordProvider(private val context: Context) {
+open class WordProvider {
     private var completeWordList = listOf<String>()
     init {
         loadWordsFromFile()
     }
     private fun loadWordsFromFile() {
-        val filename = "output.txt"
-        val file = context.assets.open(filename).bufferedReader().readLines()
-        completeWordList = file
+        completeWordList = getWords()
     }
-
+    open fun getWords(): List<String> {
+        return listOf()
+    }
     fun getRandomWord(): String {
         if (completeWordList.isEmpty()) {
             loadWordsFromFile()
