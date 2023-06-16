@@ -9,6 +9,8 @@ import SwiftUI
 import shared
 
 struct MainWordCard: View {
+    var currentWord: String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             HStack {
@@ -21,22 +23,22 @@ struct MainWordCard: View {
                     .foregroundColor(Color.germanPrimary)
             }
             Text("Your word is...")
-            Text("superkallifragilistischexpialligetisch")
+            Text(currentWord)
                 .font(.title)
                 .lineLimit(1)
             HStack {
                 Button("DeepL") {
-                    
+                    // TODO: implement
                 }
                 .buttonStyle(.borderedProminent)
                 Spacer()
                 Button("Google Translate") {
-                    
+                    // TODO: implement
                 }
                 .buttonStyle(.borderedProminent)
                 Spacer()
                 Button("Copy") {
-                    
+                    // TODO: implement
                 }
                 .buttonStyle(.bordered)
             }
@@ -49,6 +51,6 @@ struct MainWordCard: View {
 
 struct MainWordCard_Previews: PreviewProvider {
     static var previews: some View {
-        MainWordCard()
+        MainWordCard(currentWord: "Pämpämpäräm")
     }
 }
