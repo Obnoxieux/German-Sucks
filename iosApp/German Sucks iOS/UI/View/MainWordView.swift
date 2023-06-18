@@ -9,18 +9,18 @@ import SwiftUI
 import shared
 
 struct MainWordView: View {
-    @StateObject var mainWordViewModel = MainWordViewModel()
+    @StateObject var vm = MainWordViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             ExplanationCard()
-            MainWordCard(currentWord: mainWordViewModel.currentWord)
+            MainWordCard(vm: vm)
             ShareCard()
             Spacer()
             HStack {
                 Spacer()
                 Button(action: {
-                    mainWordViewModel.setCurrentWord()
+                    vm.setCurrentWord()
                 }) {
                     Label("Load your new German word here", systemImage: "sparkles")
                 }
@@ -38,10 +38,16 @@ struct MainWordView: View {
 extension MainWordView {
     class MainWordViewModel: ObservableObject {
         @Published var currentWord = "No word loaded"
+        
         let wordProvider = WordProviderPlatform()
+        let shareLookupDataProvider = ShareLookupDataProvider()
         
         func setCurrentWord() {
             currentWord = wordProvider.getRandomWord()
+        }
+        
+        func lookupWordOnline(service: SharingService) -> String {
+            return shareLookupDataProvider.getLookupURL(service: service, searchTerm: currentWord)
         }
     }
 }

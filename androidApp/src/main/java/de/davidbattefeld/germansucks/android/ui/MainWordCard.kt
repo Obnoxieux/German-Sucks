@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import de.davidbattefeld.germansucks.android.ui.theme.GermanSucksTheme
 import de.davidbattefeld.germansucks.android.ui.viewmodels.MainWordViewModel
+import de.davidbattefeld.germansucks.shared.classes.SharingService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -68,12 +69,12 @@ fun MainWordCard(
             ) {
                 Button(onClick = { vm.lookupWordOnline(
                     context = context,
-                    service = MainWordViewModel.Service.DEEPL
+                    service = SharingService.DEEPL
                     )
                 }) { Text("DeepL") }
                 Button(onClick = { vm.lookupWordOnline(
                     context = context,
-                    service = MainWordViewModel.Service.GOOGLE_TRANSLATE)
+                    service = SharingService.GOOGLE_TRANSLATE)
                 }) { Text("G Translate") }
                 OutlinedButton(
                     onClick = {

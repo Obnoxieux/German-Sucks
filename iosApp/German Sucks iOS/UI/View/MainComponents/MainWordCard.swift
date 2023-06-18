@@ -9,7 +9,9 @@ import SwiftUI
 import shared
 
 struct MainWordCard: View {
-    var currentWord: String
+    @ObservedObject var vm: MainWordView.MainWordViewModel
+    
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
@@ -23,18 +25,21 @@ struct MainWordCard: View {
                     .foregroundColor(Color.germanPrimary)
             }
             Text("Your word is...")
-            Text(currentWord)
+            Text(vm.currentWord)
                 .font(.title)
                 .minimumScaleFactor(0.7)
                 .padding(.vertical)
             HStack {
                 Button("DeepL") {
-                    // TODO: implement
+                    // TODO: investigate bug with empty URL
+                    let url = vm.lookupWordOnline(service: SharingService.deepl)
+                    openURL(URL(string: url) ?? URL(string: "https://www.deepl.com/translator")!)
                 }
                 .buttonStyle(.borderedProminent)
                 Spacer()
                 Button("Google Translate") {
-                    // TODO: implement
+                    let url = vm.lookupWordOnline(service: SharingService.googleTranslate)
+                    openURL(URL(string: url) ?? URL(string: "https://translate.google.com/")!)
                 }
                 .buttonStyle(.borderedProminent)
                 Spacer()
@@ -52,6 +57,6 @@ struct MainWordCard: View {
 
 struct MainWordCard_Previews: PreviewProvider {
     static var previews: some View {
-        MainWordCard(currentWord: "Pämpämpäräm")
+        MainWordCard(vm: MainWordView.MainWordViewModel())
     }
 }

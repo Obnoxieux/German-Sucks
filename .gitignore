@@ -16,3 +16,4 @@ local.properties
 /.idea
 /shared/build/
 /iosApp/German Sucks iOS.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcbkptlist
