@@ -1,9 +1,22 @@
 package de.davidbattefeld.germansucks.shared.classes
 
+import platform.Foundation.NSBundle
+import platform.Foundation.NSString
+import platform.Foundation.NSUTF8StringEncoding
+import platform.Foundation.stringWithContentsOfFile
+
 actual class WordProviderPlatform : WordProvider() {
     override fun getWords(): List<String> {
-        val filename = "output.txt"
-        //TODO: do iOS specific thing
-        return listOf()
+        val list = mutableListOf<String>()
+        val bundle = NSBundle.mainBundle()
+        val path = bundle.pathForResource(name = "output", ofType = "txt")
+
+        val fileContent = path?.let {
+            NSString.stringWithContentsOfFile(it, NSUTF8StringEncoding, null)
+        } as String
+        fileContent.lines().forEach {
+            list.add(it)
+        }
+        return list
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA42A9C72A3F1A09005A9C3A /* output.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA42A9C62A3F1A09005A9C3A /* output.txt */; };
 		CAE5ECBA2A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ECB92A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift */; };
 		CAE5ECBC2A2FD3DC00CC9D19 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ECBB2A2FD3DC00CC9D19 /* ContentView.swift */; };
 		CAE5ECBE2A2FD3DD00CC9D19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ECBD2A2FD3DD00CC9D19 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA42A9C62A3F1A09005A9C3A /* output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = output.txt; sourceTree = "<group>"; };
 		CAE5ECB62A2FD3DC00CC9D19 /* German Sucks iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "German Sucks iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE5ECB92A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = German_Sucks_iOSApp.swift; sourceTree = "<group>"; };
 		CAE5ECBB2A2FD3DC00CC9D19 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA42A9C52A3F19EF005A9C3A /* Dataset */ = {
+			isa = PBXGroup;
+			children = (
+				CA42A9C62A3F1A09005A9C3A /* output.txt */,
+			);
+			path = Dataset;
+			sourceTree = "<group>";
+		};
 		CAE5ECAD2A2FD3DC00CC9D19 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 				CAE5ECB92A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift */,
 				CAE5ECBB2A2FD3DC00CC9D19 /* ContentView.swift */,
 				CAE5ECBD2A2FD3DD00CC9D19 /* Assets.xcassets */,
+				CA42A9C52A3F19EF005A9C3A /* Dataset */,
 				CAE5ECBF2A2FD3DD00CC9D19 /* Preview Content */,
 			);
 			path = "German Sucks iOS";
@@ -174,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAE5ECC12A2FD3DD00CC9D19 /* Preview Assets.xcassets in Resources */,
+				CA42A9C72A3F1A09005A9C3A /* output.txt in Resources */,
 				CAE5ECBE2A2FD3DD00CC9D19 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

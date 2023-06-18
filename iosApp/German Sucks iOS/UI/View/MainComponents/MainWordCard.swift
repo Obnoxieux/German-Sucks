@@ -25,7 +25,8 @@ struct MainWordCard: View {
             Text("Your word is...")
             Text(currentWord)
                 .font(.title)
-                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .padding(.vertical)
             HStack {
                 Button("DeepL") {
                     // TODO: implement

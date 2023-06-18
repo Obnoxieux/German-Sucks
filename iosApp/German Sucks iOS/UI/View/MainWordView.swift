@@ -19,7 +19,9 @@ struct MainWordView: View {
             Spacer()
             HStack {
                 Spacer()
-                Button(action: {print("tapped")}) {
+                Button(action: {
+                    mainWordViewModel.setCurrentWord()
+                }) {
                     Label("Load your new German word here", systemImage: "sparkles")
                 }
                 .buttonStyle(.borderedProminent)
@@ -38,6 +40,9 @@ extension MainWordView {
         @Published var currentWord = "No word loaded"
         let wordProvider = WordProviderPlatform()
         
+        func setCurrentWord() {
+            currentWord = wordProvider.getRandomWord()
+        }
     }
 }
 
