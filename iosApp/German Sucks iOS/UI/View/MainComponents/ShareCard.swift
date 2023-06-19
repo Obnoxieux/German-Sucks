@@ -9,6 +9,8 @@ import SwiftUI
 import shared
 
 struct ShareCard: View {
+    @ObservedObject var vm: MainWordView.MainWordViewModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15.0) {
             Image(systemName: "bubble.left.fill")
@@ -16,19 +18,18 @@ struct ShareCard: View {
                 .foregroundColor(Color.germanSecondary)
             Text("Let the world know!")
             HStack {
-                Button("Share with text") {
-                    
+                ShareLink(item: vm.shareLookupDataProvider.getShareText(word: vm.currentWord)) {
+                    Text("Share with text")
+                        .padding(9)
+                        .foregroundColor(.white)
+                        .background(Color.germanSecondary)
+                        .cornerRadius(7)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.germanSecondary)
                 Spacer()
-                Button("Share without text") {
-                    
-                }
-                .buttonStyle(.bordered)
-                .foregroundColor(.germanSecondary)
+                ShareLink("Share without text", item: vm.currentWord)
             }
-            
+            .tint(.germanSecondary)
+            .labelStyle(.titleOnly)
         }
         .padding()
         .background(Color.secondaryBackground)
@@ -38,6 +39,6 @@ struct ShareCard: View {
 
 struct ShareCard_Previews: PreviewProvider {
     static var previews: some View {
-        ShareCard()
+        ShareCard(vm: MainWordView.MainWordViewModel())
     }
 }

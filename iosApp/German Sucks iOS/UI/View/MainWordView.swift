@@ -16,7 +16,7 @@ struct MainWordView: View {
             VStack(alignment: .leading, spacing: 15) {
                 ExplanationCard()
                 MainWordCard(vm: vm)
-                ShareCard()
+                ShareCard(vm: vm)
             }
             .padding()
         }
