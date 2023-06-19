@@ -25,7 +25,7 @@ struct ContentView: View {
                         }
                     Text("Not implemented yet")
                         .tabItem {
-                            Label("Favorite", systemImage: "star.bubble")
+                            Label("Favorites", systemImage: "star.bubble")
                         }
                 }
             default:

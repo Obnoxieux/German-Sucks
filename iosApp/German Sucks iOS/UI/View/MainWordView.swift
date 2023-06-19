@@ -12,26 +12,28 @@ struct MainWordView: View {
     @StateObject var vm = MainWordViewModel()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            ExplanationCard()
-            MainWordCard(vm: vm)
-            ShareCard()
-            Spacer()
-            HStack {
-                Spacer()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 15) {
+                ExplanationCard()
+                MainWordCard(vm: vm)
+                ShareCard()
+            }
+            .padding()
+        }
+        .navigationTitle("German Sucks")
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
                 Button(action: {
                     vm.setCurrentWord()
                 }) {
                     Label("Load your new German word here", systemImage: "sparkles")
+                        .labelStyle(.titleAndIcon)
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .padding(.bottom)
-                Spacer()
             }
         }
-        .padding()
-        .navigationTitle("German Sucks")
     }
 }
 

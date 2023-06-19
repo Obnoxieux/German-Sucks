@@ -27,8 +27,9 @@ struct MainWordCard: View {
             }
             Text("Your word is...")
             Text(vm.currentWord)
-                .font(.title)
-                .minimumScaleFactor(0.7)
+                .font(.title2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .minimumScaleFactor(0.5)
                 .padding(.vertical)
                 .allowsTightening(true)
                 .textSelection(.enabled)
