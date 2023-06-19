@@ -10,6 +10,7 @@ import shared
 
 struct MainWordCard: View {
     @ObservedObject var vm: MainWordView.MainWordViewModel
+    let pasteboard = UIPasteboard.general
     
     @Environment(\.openURL) var openURL
     
@@ -29,9 +30,10 @@ struct MainWordCard: View {
                 .font(.title)
                 .minimumScaleFactor(0.7)
                 .padding(.vertical)
+                .allowsTightening(true)
+                .textSelection(.enabled)
             HStack {
                 Button("DeepL") {
-                    // TODO: investigate bug with empty URL
                     let url = vm.lookupWordOnline(service: SharingService.deepl)
                     openURL(URL(string: url) ?? URL(string: "https://www.deepl.com/translator")!)
                 }
@@ -44,7 +46,7 @@ struct MainWordCard: View {
                 .buttonStyle(.borderedProminent)
                 Spacer()
                 Button("Copy") {
-                    // TODO: implement
+                    pasteboard.string = vm.currentWord
                 }
                 .buttonStyle(.bordered)
             }
