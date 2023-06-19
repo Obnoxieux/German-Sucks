@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "filename" : "emoji_u1f1e9_1f1ea.svg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "emoji_u1f1e9_1f1ea 1.svg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "emoji_u1f1e9_1f1ea 2.svg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

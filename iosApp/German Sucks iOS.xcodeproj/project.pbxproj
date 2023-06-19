@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA42A9C72A3F1A09005A9C3A /* output.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA42A9C62A3F1A09005A9C3A /* output.txt */; };
+		CAD9A68C2A40E005002720F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD9A68B2A40E005002720F3 /* LaunchScreen.storyboard */; };
 		CAE5ECBA2A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ECB92A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift */; };
 		CAE5ECBC2A2FD3DC00CC9D19 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ECBB2A2FD3DC00CC9D19 /* ContentView.swift */; };
 		CAE5ECBE2A2FD3DD00CC9D19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ECBD2A2FD3DD00CC9D19 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		CA42A9C62A3F1A09005A9C3A /* output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = output.txt; sourceTree = "<group>"; };
+		CAD9A68B2A40E005002720F3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAE5ECB62A2FD3DC00CC9D19 /* German Sucks iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "German Sucks iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE5ECB92A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = German_Sucks_iOSApp.swift; sourceTree = "<group>"; };
 		CAE5ECBB2A2FD3DC00CC9D19 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				CAE5ECC82A325D7E00CC9D19 /* Global */,
 				CAE5ECB92A2FD3DC00CC9D19 /* German_Sucks_iOSApp.swift */,
 				CAE5ECBB2A2FD3DC00CC9D19 /* ContentView.swift */,
+				CAD9A68B2A40E005002720F3 /* LaunchScreen.storyboard */,
 				CAE5ECBD2A2FD3DD00CC9D19 /* Assets.xcassets */,
 				CA42A9C52A3F19EF005A9C3A /* Dataset */,
 				CAE5ECBF2A2FD3DD00CC9D19 /* Preview Content */,
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAE5ECC12A2FD3DD00CC9D19 /* Preview Assets.xcassets in Resources */,
+				CAD9A68C2A40E005002720F3 /* LaunchScreen.storyboard in Resources */,
 				CA42A9C72A3F1A09005A9C3A /* output.txt in Resources */,
 				CAE5ECBE2A2FD3DD00CC9D19 /* Assets.xcassets in Resources */,
 			);
@@ -361,6 +365,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -399,6 +404,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
