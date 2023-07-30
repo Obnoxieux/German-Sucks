@@ -13,7 +13,19 @@ struct ContentView: View {
         switch UIDevice.current.userInterfaceIdiom {
             case .pad, .mac:
                 //TODO: add layout for big screens
-                EmptyView()
+                TabView {
+                    NavigationStack {
+                        MainWordView()
+                    }
+                        .tabItem {
+                            Label("Word", systemImage: "book")
+                                
+                        }
+                    Text("Not implemented yet")
+                        .tabItem {
+                            Label("Favorites", systemImage: "star.bubble")
+                        }
+                }
             case .phone:
                 TabView {
                     NavigationStack {
