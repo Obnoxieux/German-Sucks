@@ -11,7 +11,7 @@ android {
         applicationId "de.davidbattefeld.germansucks"
         minSdk 31
         targetSdk 33
-        versionCode 3
+        versionCode 4
         versionName "0.7.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
