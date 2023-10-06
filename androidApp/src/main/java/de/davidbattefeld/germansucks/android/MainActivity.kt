@@ -7,10 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import de.davidbattefeld.germansucks.android.ui.MainScreen
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import de.davidbattefeld.germansucks.android.ui.GermanSucksApp
 import de.davidbattefeld.germansucks.android.ui.theme.GermanSucksTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var navController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -20,7 +23,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    navController = rememberNavController()
+                    GermanSucksApp(navHostController = navController)
                 }
             }
         }
