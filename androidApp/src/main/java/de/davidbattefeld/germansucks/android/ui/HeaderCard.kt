@@ -21,7 +21,7 @@ import de.davidbattefeld.germansucks.shared.global.Constants
 @Composable
 fun HeaderCard() {
     val explanationText by remember {
-        mutableStateOf(Constants().getExplanationText())
+        mutableStateOf(Constants.explanationText())
     }
     Card(
         modifier = Modifier,
