@@ -18,6 +18,7 @@ fun NavBar(navController: NavHostController) {
     val screens = listOf(
         GermanSucksRoute.Main,
         GermanSucksRoute.Favorites,
+        GermanSucksRoute.Stats,
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
