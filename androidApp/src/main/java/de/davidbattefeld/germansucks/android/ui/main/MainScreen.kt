@@ -1,4 +1,4 @@
-package de.davidbattefeld.germansucks.android.ui
+package de.davidbattefeld.germansucks.android.ui.main
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement

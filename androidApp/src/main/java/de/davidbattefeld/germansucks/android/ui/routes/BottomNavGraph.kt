@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import de.davidbattefeld.germansucks.android.StatsScreen
-import de.davidbattefeld.germansucks.android.ui.FavoritesScreen
-import de.davidbattefeld.germansucks.android.ui.MainScreen
+import de.davidbattefeld.germansucks.android.ui.favorites.FavoritesScreen
+import de.davidbattefeld.germansucks.android.ui.main.MainScreen
+import de.davidbattefeld.germansucks.android.ui.stats.StatsScreen
 
 @Composable
 fun BottomNavGraph(

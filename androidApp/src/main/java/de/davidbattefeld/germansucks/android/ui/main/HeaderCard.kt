@@ -1,4 +1,4 @@
-package de.davidbattefeld.germansucks.android.ui
+package de.davidbattefeld.germansucks.android.ui.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

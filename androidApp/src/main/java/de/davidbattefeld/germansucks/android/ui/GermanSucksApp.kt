@@ -42,10 +42,16 @@ fun GermanSucksApp(
         val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
         Scaffold(
             topBar = {
+                val navTitle = when (currentRoute.value?.destination?.route) {
+                    GermanSucksRoute.Main.route -> "German Sucks"
+                    GermanSucksRoute.Favorites.route -> "Favorites"
+                    GermanSucksRoute.Stats.route -> "Stats"
+                    else -> "German Sucks"
+                }
                 TopAppBar(
                     title = {
                         Text(
-                            "German Sucks",
+                            text = navTitle,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )

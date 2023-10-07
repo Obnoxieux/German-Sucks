@@ -1,4 +1,4 @@
-package de.davidbattefeld.germansucks.android
+package de.davidbattefeld.germansucks.android.ui.stats
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
