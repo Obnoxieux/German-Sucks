@@ -9,13 +9,17 @@ import de.davidbattefeld.germansucks.android.ui.FavoritesScreen
 import de.davidbattefeld.germansucks.android.ui.MainScreen
 
 @Composable
-fun BottomNavGraph(modifier: Modifier, navController: NavHostController) {
+fun BottomNavGraph(
+    modifier: Modifier,
+    navController: NavHostController,
+    setFabOnClick: (() -> Unit) -> Unit
+) {
     NavHost(
         navController = navController,
         startDestination = GermanSucksRoute.Main.route
     ){
         composable(route = GermanSucksRoute.Main.route) {
-            MainScreen()
+            MainScreen(setFabOnClick = setFabOnClick)
         }
         composable(route = GermanSucksRoute.Favorites.route) {
             FavoritesScreen()

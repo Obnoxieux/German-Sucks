@@ -16,7 +16,6 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import de.davidbattefeld.germansucks.android.LocalSnackbarHostState
 import de.davidbattefeld.germansucks.android.ui.theme.GermanSucksTheme
 import de.davidbattefeld.germansucks.android.ui.viewmodels.MainWordViewModel
 import de.davidbattefeld.germansucks.shared.classes.SharingService
@@ -33,10 +33,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun MainWordCard(
     word: String,
-    //TODO: move this to ViewModel
-    snackbarHostState: SnackbarHostState,
     scope: CoroutineScope,
 ) {
+    val snackbarHostState = LocalSnackbarHostState.current
     val context = LocalContext.current
     val vm = viewModel<MainWordViewModel>()
     ElevatedCard(
