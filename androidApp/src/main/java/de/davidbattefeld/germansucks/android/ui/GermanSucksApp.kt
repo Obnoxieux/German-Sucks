@@ -3,10 +3,12 @@ package de.davidbattefeld.germansucks.android.ui
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
@@ -74,16 +76,25 @@ fun GermanSucksApp(
                 }
             },
             floatingActionButton = {
-                if (currentRoute.value?.destination?.route === GermanSucksRoute.Main.route) {
-                    ExtendedFloatingActionButton(
+                when (currentRoute.value?.destination?.route) {
+                    GermanSucksRoute.Main.route -> ExtendedFloatingActionButton(
                         onClick = { fabOnClick?.invoke() },
                         expanded = true,
-                        icon = { Icon(Icons.Filled.AutoAwesome, "Localized Description") },
+                        icon = { Icon(Icons.Filled.AutoAwesome, "load new") },
                         text = { Text(text = "Load a new random German word") },
+                    )
+                    GermanSucksRoute.Favorites.route -> ExtendedFloatingActionButton(
+                        onClick = { /*TODO*/ },
+                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                        icon = { Icon(Icons.Filled.Share, "share") },
+                        text = { Text(text = "Share List") },
                     )
                 }
             },
-            floatingActionButtonPosition = FabPosition.Center,
+            floatingActionButtonPosition = when (currentRoute.value?.destination?.route) {
+                GermanSucksRoute.Main.route -> FabPosition.Center
+                else -> FabPosition.End
+            }
         ) { padding ->
             BottomNavGraph(
                 navController = navController,

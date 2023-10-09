@@ -6,12 +6,15 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
 import de.davidbattefeld.germansucks.shared.classes.ShareLookupDataProvider
 import de.davidbattefeld.germansucks.shared.classes.SharingService
+import de.davidbattefeld.germansucks.shared.model.Word
 
 abstract class GenericViewModel(private val application: Application) : AndroidViewModel(application) {
-    protected val shareLookupDataProvider = ShareLookupDataProvider()
+    var favoriteWords = mutableStateListOf<Word>()
+    private val shareLookupDataProvider = ShareLookupDataProvider()
 
     fun copyWordToClipboard(currentWord: String) {
         val clipboardManager = application.applicationContext.getSystemService(ClipboardManager::class.java) as ClipboardManager

@@ -1,6 +1,8 @@
 package de.davidbattefeld.germansucks.android.ui.favorites
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,18 +23,31 @@ fun FavoritesListItem(
         headlineText = { Text(word.sequence) },
         supportingText = { Text("${word.length} characters") },
         trailingContent = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    Icons.Filled.Share,
-                    contentDescription = "Share word",
-                )
+            Row {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        Icons.Filled.ContentCopy,
+                        contentDescription = "Copy word",
+                    )
+                }
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        Icons.Filled.Share,
+                        contentDescription = "Share word",
+                    )
+                }
             }
         },
         leadingContent = {
+            val colors = when {
+                word.length < Word.WORD_LENGTH_SHORT -> Pair(MaterialTheme.colorScheme.tertiary, MaterialTheme.colorScheme.onTertiary)
+                word.length in Word.WORD_LENGTH_SHORT..Word.WORD_LENGTH_MEDIUM -> Pair(MaterialTheme.colorScheme.secondary, MaterialTheme.colorScheme.onSecondary)
+                else -> Pair(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimary)
+            }
             WordAvatar(
                 character = word.firstCharacter,
-                circleColor = MaterialTheme.colorScheme.primaryContainer,
-                textColor = MaterialTheme.colorScheme.onPrimaryContainer
+                circleColor = colors.first,
+                textColor = colors.second
             )
         }
     )
