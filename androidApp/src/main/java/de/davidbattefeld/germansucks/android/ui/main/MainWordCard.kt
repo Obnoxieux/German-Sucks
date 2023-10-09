@@ -68,19 +68,22 @@ fun MainWordCard(
             ) {
                 Button(onClick = { vm.lookupWordOnline(
                     context = context,
-                    service = SharingService.DEEPL
+                    service = SharingService.DEEPL,
+                    currentWord = vm.currentWord.value
                     )
                 }) { Text("DeepL") }
                 Button(onClick = { vm.lookupWordOnline(
                     context = context,
-                    service = SharingService.GOOGLE_TRANSLATE)
+                    service = SharingService.GOOGLE_TRANSLATE,
+                    currentWord = vm.currentWord.value
+                    )
                 }) { Text("G Translate") }
                 OutlinedButton(
                     onClick = {
                         scope.launch {
                             snackbarHostState.showSnackbar("Copied to clipboard!")
                         }
-                        vm.copyWordToClipboard()
+                        vm.copyWordToClipboard(vm.currentWord.value)
                     },
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.onPrimaryContainer)
                 ) { Text("Copy") }

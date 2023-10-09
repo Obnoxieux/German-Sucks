@@ -49,14 +49,22 @@ fun ShareCard() {
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Button(
-                    onClick = { vm.shareWord(context = context, addText = true) },
+                    onClick = { vm.shareWord(
+                        context = context,
+                        addText = true,
+                        currentWord = vm.currentWord.value
+                    ) },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
                         contentColor = MaterialTheme.colorScheme.onSecondary
                     )
                 ) { Text("Share with text") }
                 OutlinedButton(
-                    onClick = { vm.shareWord(context = context, addText = false) },
+                    onClick = { vm.shareWord(
+                        context = context,
+                        addText = false,
+                        vm.currentWord.value
+                    ) },
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer,
                         contentColor = MaterialTheme.colorScheme.onSecondaryContainer
