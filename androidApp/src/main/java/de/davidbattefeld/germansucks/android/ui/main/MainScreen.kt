@@ -12,13 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import de.davidbattefeld.germansucks.android.ui.AppViewModelProvider
 import de.davidbattefeld.germansucks.android.ui.theme.GermanSucksTheme
 import de.davidbattefeld.germansucks.android.ui.viewmodels.MainWordViewModel
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    mainWordViewModel: MainWordViewModel = viewModel(),
+    mainWordViewModel: MainWordViewModel = viewModel(factory = AppViewModelProvider.Factory),
     setFabOnClick: (() -> Unit) -> Unit,
 ) {
     val scope = rememberCoroutineScope()

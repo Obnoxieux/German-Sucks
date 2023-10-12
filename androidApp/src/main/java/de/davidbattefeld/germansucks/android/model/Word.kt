@@ -6,17 +6,17 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "words")
 data class Word(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val sequence: String
+    var id: Int = 0,
+    var sequence: String
 ) {
     companion object {
         const val WORD_LENGTH_SHORT = 30
         const val WORD_LENGTH_MEDIUM = 34
     }
 
-    val length: Int = sequence.length
-    val isFavorite = false
-    val firstCharacter = sequence.first().toString().replaceFirstChar {
+    var length: Int = sequence.length
+    var isFavorite = false
+    var firstCharacter = sequence.first().toString().replaceFirstChar {
         if (it.isLowerCase()) it.titlecase() else it.toString()
     }
 }

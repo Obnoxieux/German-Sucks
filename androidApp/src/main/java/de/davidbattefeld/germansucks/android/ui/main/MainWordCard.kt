@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.PsychologyAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -24,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import de.davidbattefeld.germansucks.android.LocalSnackbarHostState
+import de.davidbattefeld.germansucks.android.model.Word
 import de.davidbattefeld.germansucks.android.ui.theme.GermanSucksTheme
 import de.davidbattefeld.germansucks.android.ui.viewmodels.MainWordViewModel
 import de.davidbattefeld.germansucks.shared.classes.SharingService
@@ -87,6 +90,13 @@ fun MainWordCard(
                     },
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.onPrimaryContainer)
                 ) { Text("Copy") }
+                IconButton(onClick = {
+                    scope.launch {
+                        vm.saveWordToFavorites(Word(sequence = vm.currentWord.value))
+                    }
+                }) {
+                    Icon(Icons.Filled.Favorite, contentDescription = "heart")
+                }
             }
         }
     }

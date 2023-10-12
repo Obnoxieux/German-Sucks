@@ -46,4 +46,8 @@ abstract class GenericViewModel(
         val shareIntent = Intent.createChooser(sendIntent, null)
         context.startActivity(shareIntent)
     }
+
+    suspend fun saveWordToFavorites(word: Word) {
+        wordsRepository.insertWord(word)
+    }
 }
