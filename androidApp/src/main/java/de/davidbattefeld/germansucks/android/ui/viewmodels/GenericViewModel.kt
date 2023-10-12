@@ -8,11 +8,15 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
+import de.davidbattefeld.germansucks.android.data.WordsRepository
+import de.davidbattefeld.germansucks.android.model.Word
 import de.davidbattefeld.germansucks.shared.classes.ShareLookupDataProvider
 import de.davidbattefeld.germansucks.shared.classes.SharingService
-import de.davidbattefeld.germansucks.shared.model.Word
 
-abstract class GenericViewModel(private val application: Application) : AndroidViewModel(application) {
+abstract class GenericViewModel(
+    private val application: Application,
+    protected val wordsRepository: WordsRepository
+) : AndroidViewModel(application) {
     var favoriteWords = mutableStateListOf<Word>()
     private val shareLookupDataProvider = ShareLookupDataProvider()
 

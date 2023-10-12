@@ -12,7 +12,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import de.davidbattefeld.germansucks.shared.model.Word
+import de.davidbattefeld.germansucks.android.model.Word
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
