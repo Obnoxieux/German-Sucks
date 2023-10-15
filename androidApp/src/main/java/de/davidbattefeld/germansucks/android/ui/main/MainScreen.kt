@@ -2,8 +2,8 @@ package de.davidbattefeld.germansucks.android.ui.main
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
@@ -23,18 +23,24 @@ fun MainScreen(
     setFabOnClick: (() -> Unit) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
-    Column(
+    LazyColumn(
         modifier = Modifier
             .padding(15.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        HeaderCard()
-        MainWordCard(
-            word = mainWordViewModel.currentWord.value,
-            scope = scope
-        )
-        ShareCard()
+        item {
+            HeaderCard()
+        }
+        item {
+            MainWordCard(
+                word = mainWordViewModel.currentWord.value,
+                scope = scope
+            )
+        }
+        item {
+            ShareCard()
+        }
     }
     LaunchedEffect(Unit) {
         setFabOnClick { mainWordViewModel.setCurrentWord() }

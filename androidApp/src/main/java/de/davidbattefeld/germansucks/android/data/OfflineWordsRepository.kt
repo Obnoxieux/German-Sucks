@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 class OfflineWordsRepository(private val wordDao: WordDao): WordsRepository {
     override fun getAllWordsStream(): Flow<List<Word>> = wordDao.getAllWords()
+    override fun getFavoriteWordsStream(): Flow<List<Word>> = wordDao.getFavoriteWords()
 
     override fun getWordStream(id: Int): Flow<Word?> = wordDao.getWord(id)
 

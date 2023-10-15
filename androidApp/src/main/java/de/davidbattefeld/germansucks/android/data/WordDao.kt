@@ -20,9 +20,12 @@ interface WordDao {
     @Delete
     suspend fun delete(word: Word)
 
-    @Query("SELECT * from words WHERE id = :id")
+    @Query("SELECT * FROM words WHERE id = :id")
     fun getWord(id: Int): Flow<Word>
 
-    @Query("SELECT * from words ORDER BY sequence ASC")
+    @Query("SELECT * FROM words ORDER BY sequence ASC")
     fun getAllWords(): Flow<List<Word>>
+
+    @Query("SELECT * FROM words WHERE isFavorite = 1 ORDER BY sequence ASC")
+    fun getFavoriteWords(): Flow<List<Word>>
 }

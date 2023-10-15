@@ -48,6 +48,8 @@ abstract class GenericViewModel(
     }
 
     suspend fun saveWordToFavorites(word: Word) {
+        word.isFavorite = true
+        favoriteWords.add(word)
         wordsRepository.insertWord(word)
     }
 }

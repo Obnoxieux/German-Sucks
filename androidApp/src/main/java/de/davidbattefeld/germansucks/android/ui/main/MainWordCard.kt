@@ -1,13 +1,13 @@
 package de.davidbattefeld.germansucks.android.ui.main
 
 import android.content.res.Configuration
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.PsychologyAlt
@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,50 +54,59 @@ fun MainWordCard(
             modifier = Modifier
                 .padding(12.dp)
         ) {
-            Row() {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(imageVector = Icons.Filled.MenuBook, contentDescription = null)
+                Text("Your word is...",
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.padding(start = 12.dp))
                 Spacer(modifier = Modifier.weight(1.0F))
                 Icon(imageVector = Icons.Filled.PsychologyAlt, contentDescription = null)
             }
-            Text("Your word is...")
             Text(
                 word,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(vertical = 12.dp)
             )
-            Text("Action:", style = MaterialTheme.typography.labelLarge)
+            Text("Translate:", style = MaterialTheme.typography.labelLarge)
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(onClick = { vm.lookupWordOnline(
+                OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.DEEPL,
                     currentWord = vm.currentWord.value
                     )
                 }) { Text("DeepL") }
-                Button(onClick = { vm.lookupWordOnline(
+                OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.GOOGLE_TRANSLATE,
                     currentWord = vm.currentWord.value
                     )
                 }) { Text("G Translate") }
-                OutlinedButton(
+            }
+            Text("Actions:", style = MaterialTheme.typography.labelLarge)
+            Row {
+                Button(
+                    onClick = {
+                    scope.launch {
+                        vm.saveWordToFavorites(Word(sequence = vm.currentWord.value))
+                    }
+                }) {
+                    Icon(Icons.Filled.Favorite, contentDescription = "heart")
+                    Text("Add to Favorites", modifier = Modifier.padding(start = 6.dp))
+                }
+                Spacer(modifier = Modifier.weight(1.0F))
+                IconButton(
                     onClick = {
                         scope.launch {
                             snackbarHostState.showSnackbar("Copied to clipboard!")
                         }
                         vm.copyWordToClipboard(vm.currentWord.value)
                     },
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.onPrimaryContainer)
-                ) { Text("Copy") }
-                IconButton(onClick = {
-                    scope.launch {
-                        vm.saveWordToFavorites(Word(sequence = vm.currentWord.value))
-                    }
-                }) {
-                    Icon(Icons.Filled.Favorite, contentDescription = "heart")
-                }
+                ) { Icon(Icons.Filled.ContentCopy, contentDescription = "copy word to clipboard") }
             }
         }
     }
