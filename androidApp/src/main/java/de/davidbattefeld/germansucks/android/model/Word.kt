@@ -19,4 +19,8 @@ data class Word(
     var firstCharacter = sequence.first().toString().replaceFirstChar {
         if (it.isLowerCase()) it.titlecase() else it.toString()
     }
+
+    override fun toString(): String {
+        return "$sequence ($length characters)"
+    }
 }
