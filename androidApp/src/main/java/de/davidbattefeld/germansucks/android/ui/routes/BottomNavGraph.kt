@@ -25,7 +25,7 @@ fun BottomNavGraph(
                 MainScreen(setFabOnClick = setFabOnClick)
             }
             composable(route = GermanSucksRoute.Favorites.route) {
-                FavoritesScreen()
+                FavoritesScreen(setFabOnClick = setFabOnClick)
             }
             composable(route = GermanSucksRoute.Stats.route) {
                 StatsScreen()

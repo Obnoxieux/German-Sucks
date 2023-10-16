@@ -21,7 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import de.davidbattefeld.germansucks.android.model.Word
 import de.davidbattefeld.germansucks.android.ui.viewmodels.MainWordViewModel
+import de.davidbattefeld.germansucks.shared.classes.SharingMode
 
 @Composable
 fun ShareCard() {
@@ -51,8 +53,8 @@ fun ShareCard() {
                 Button(
                     onClick = { vm.shareWord(
                         context = context,
-                        addText = true,
-                        currentWord = vm.currentWord.value
+                        mode = SharingMode.WithSentence,
+                        wordList = listOf(Word(sequence = vm.currentWord.value))
                     ) },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -62,8 +64,8 @@ fun ShareCard() {
                 OutlinedButton(
                     onClick = { vm.shareWord(
                         context = context,
-                        addText = false,
-                        vm.currentWord.value
+                        mode = SharingMode.SingleWord,
+                        wordList = listOf(Word(sequence = vm.currentWord.value))
                     ) },
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer,

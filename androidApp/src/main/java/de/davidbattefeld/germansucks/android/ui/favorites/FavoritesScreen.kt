@@ -6,17 +6,22 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import de.davidbattefeld.germansucks.android.ui.AppViewModelProvider
 import de.davidbattefeld.germansucks.android.ui.viewmodels.FavoritesViewModel
+import de.davidbattefeld.germansucks.shared.classes.SharingMode
 
 @Composable
 fun FavoritesScreen(
     modifier: Modifier = Modifier,
-    favoritesViewModel: FavoritesViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    favoritesViewModel: FavoritesViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    setFabOnClick: (() -> Unit) -> Unit,
 ) {
+    val context = LocalContext.current
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -37,5 +42,11 @@ fun FavoritesScreen(
             }
         }
     }
-    //TODO: share whole list with FAB
+    LaunchedEffect(Unit) {
+        setFabOnClick { favoritesViewModel.shareWord(
+            context = context,
+            mode = SharingMode.List,
+            wordList = favoritesViewModel.favoriteWords
+        ) }
+    }
 }
