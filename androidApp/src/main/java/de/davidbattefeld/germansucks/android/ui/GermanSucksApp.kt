@@ -84,7 +84,7 @@ fun GermanSucksApp(
                         text = { Text(text = "Load a new random German word") },
                     )
                     GermanSucksRoute.Favorites.route -> ExtendedFloatingActionButton(
-                        onClick = { /*TODO*/ },
+                        onClick = { fabOnClick?.invoke() },
                         containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                         icon = { Icon(Icons.Filled.Share, "share") },
                         text = { Text(text = "Share List") },

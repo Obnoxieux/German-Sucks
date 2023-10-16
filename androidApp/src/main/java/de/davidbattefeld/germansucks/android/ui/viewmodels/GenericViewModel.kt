@@ -8,9 +8,10 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
+import de.davidbattefeld.germansucks.android.classes.ShareLookupDataProvider
 import de.davidbattefeld.germansucks.android.data.WordsRepository
 import de.davidbattefeld.germansucks.android.model.Word
-import de.davidbattefeld.germansucks.shared.classes.ShareLookupDataProvider
+import de.davidbattefeld.germansucks.shared.classes.SharingMode
 import de.davidbattefeld.germansucks.shared.classes.SharingService
 
 abstract class GenericViewModel(
@@ -35,12 +36,12 @@ abstract class GenericViewModel(
         context.startActivity(urlIntent)
     }
 
-    fun shareWord(context: Context, addText: Boolean, currentWord: String) {
-        val shareText = shareLookupDataProvider.getShareText(currentWord)
+    fun shareWord(context: Context, mode: SharingMode, wordList: List<Word>) {
+        val shareText = shareLookupDataProvider.getShareText(mode, wordList)
 
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, if (addText) { shareText } else { currentWord })
+            putExtra(Intent.EXTRA_TEXT, shareText)
             type = "text/plain"
         }
         val shareIntent = Intent.createChooser(sendIntent, null)
