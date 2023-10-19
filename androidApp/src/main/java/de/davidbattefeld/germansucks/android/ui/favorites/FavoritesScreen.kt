@@ -18,7 +18,7 @@ import de.davidbattefeld.germansucks.shared.classes.SharingMode
 @Composable
 fun FavoritesScreen(
     modifier: Modifier = Modifier,
-    favoritesViewModel: FavoritesViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    vm: FavoritesViewModel = viewModel(factory = AppViewModelProvider.Factory),
     setFabOnClick: (() -> Unit) -> Unit,
 ) {
     val context = LocalContext.current
@@ -26,15 +26,19 @@ fun FavoritesScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(
-            items = favoritesViewModel.favoriteWords,
+            items = vm.favoriteWords,
             key = { word ->
                 word.id
             }
         ) {
-            FavoritesListItem(word = it)
+            FavoritesListItem(
+                word = it,
+                copyWord = vm::copyWordToClipboard,
+                shareWord = vm::shareWord,
+                )
         }
         item {
-            if (favoritesViewModel.favoriteWords.isEmpty()) {
+            if (vm.favoriteWords.isEmpty()) {
                 Text(
                     text = "You haven't saved any words as favorites yet.",
                     modifier = Modifier.padding(16.dp)
@@ -43,10 +47,10 @@ fun FavoritesScreen(
         }
     }
     LaunchedEffect(Unit) {
-        setFabOnClick { favoritesViewModel.shareWord(
+        setFabOnClick { vm.shareWord(
             context = context,
             mode = SharingMode.List,
-            wordList = favoritesViewModel.favoriteWords
+            wordList = vm.favoriteWords
         ) }
     }
 }
