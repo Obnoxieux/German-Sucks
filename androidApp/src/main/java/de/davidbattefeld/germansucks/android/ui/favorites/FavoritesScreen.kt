@@ -35,7 +35,8 @@ fun FavoritesScreen(
                 word = it,
                 copyWord = vm::copyWordToClipboard,
                 shareWord = vm::shareWord,
-                )
+                lookupOnline = vm::lookupWordOnline,
+            )
         }
         item {
             if (vm.favoriteWords.isEmpty()) {

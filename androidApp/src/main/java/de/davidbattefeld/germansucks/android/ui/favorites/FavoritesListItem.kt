@@ -3,11 +3,14 @@ package de.davidbattefeld.germansucks.android.ui.favorites
 import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Share
@@ -17,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,6 +32,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import de.davidbattefeld.germansucks.android.model.Word
 import de.davidbattefeld.germansucks.shared.classes.SharingMode
+import de.davidbattefeld.germansucks.shared.classes.SharingService
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,6 +40,7 @@ fun FavoritesListItem(
     word: Word,
     copyWord: (word: Word) -> Unit,
     shareWord: (context: Context, mode: SharingMode, wordList: List<Word>) -> Unit,
+    lookupOnline: (context: Context, service: SharingService, currentWord: Word) -> Unit,
 ) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
@@ -66,18 +72,37 @@ fun FavoritesListItem(
         AnimatedVisibility (expanded) {
             Row(
                 modifier = Modifier
-                    .padding(start = 72.dp)
+                    .padding(horizontal = 18.dp, vertical = 5.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                IconButton(onClick = { copyWord(word) }) {
-                    Icon(
-                        Icons.Filled.ContentCopy,
-                        contentDescription = "Copy word",
-                    )
+                SuggestionChip(
+                    onClick = { lookupOnline(context, SharingService.DEEPL, word) },
+                    label = { Text("DeepL") }
+                )
+                SuggestionChip(
+                    onClick = { lookupOnline(context, SharingService.GOOGLE_TRANSLATE, word) },
+                    label = { Text("G Translate") }
+                )
+                Spacer(modifier = Modifier.weight(1.0F))
+                Row {
+                    IconButton(onClick = { copyWord(word) }) {
+                        Icon(
+                            Icons.Filled.ContentCopy,
+                            contentDescription = "Copy word",
+                        )
+                    }
+                    IconButton(onClick = { shareWord(context, SharingMode.SingleWord, listOf(word)) }) {
+                        Icon(
+                            Icons.Filled.Share,
+                            contentDescription = "Share word",
+                        )
+                    }
                 }
-                IconButton(onClick = { shareWord(context, SharingMode.SingleWord, listOf(word)) }) {
+                Spacer(modifier = Modifier.weight(1.0F))
+                IconButton(onClick = {  }) {
                     Icon(
-                        Icons.Filled.Share,
-                        contentDescription = "Share word",
+                        Icons.Filled.Delete,
+                        contentDescription = "Copy word",
                     )
                 }
             }
