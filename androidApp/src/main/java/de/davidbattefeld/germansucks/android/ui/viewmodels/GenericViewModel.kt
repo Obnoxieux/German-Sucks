@@ -27,11 +27,11 @@ abstract class GenericViewModel(
         clipboardManager.setPrimaryClip(clip)
     }
 
-    fun lookupWordOnline(context: Context, service: SharingService,currentWord: String) {
+    fun lookupWordOnline(context: Context, service: SharingService, currentWord: Word) {
         val urlIntent = Intent(
             Intent.ACTION_VIEW, Uri.parse(shareLookupDataProvider.getLookupURL(
             service = service,
-            searchTerm = currentWord)
+            searchTerm = currentWord.sequence)
         ))
         context.startActivity(urlIntent)
     }

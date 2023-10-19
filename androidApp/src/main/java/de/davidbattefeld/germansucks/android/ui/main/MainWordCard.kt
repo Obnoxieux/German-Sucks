@@ -77,13 +77,13 @@ fun MainWordCard(
                 OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.DEEPL,
-                    currentWord = vm.currentWord.value.sequence
+                    currentWord = vm.currentWord.value
                     )
                 }) { Text("DeepL") }
                 OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.GOOGLE_TRANSLATE,
-                    currentWord = vm.currentWord.value.sequence
+                    currentWord = vm.currentWord.value
                     )
                 }) { Text("G Translate") }
             }
