@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun MainWordCard(
-    word: String,
+    word: Word,
     scope: CoroutineScope,
 ) {
     val snackbarHostState = LocalSnackbarHostState.current
@@ -65,7 +65,7 @@ fun MainWordCard(
                 Icon(imageVector = Icons.Filled.PsychologyAlt, contentDescription = null)
             }
             Text(
-                word,
+                word.sequence,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(vertical = 12.dp)
@@ -77,13 +77,13 @@ fun MainWordCard(
                 OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.DEEPL,
-                    currentWord = vm.currentWord.value
+                    currentWord = vm.currentWord.value.sequence
                     )
                 }) { Text("DeepL") }
                 OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.GOOGLE_TRANSLATE,
-                    currentWord = vm.currentWord.value
+                    currentWord = vm.currentWord.value.sequence
                     )
                 }) { Text("G Translate") }
             }
@@ -92,7 +92,7 @@ fun MainWordCard(
                 Button(
                     onClick = {
                     scope.launch {
-                        vm.saveWordToFavorites(Word(sequence = vm.currentWord.value))
+                        vm.saveWordToFavorites(vm.currentWord.value)
                     }
                 }) {
                     Icon(Icons.Filled.Favorite, contentDescription = "heart")

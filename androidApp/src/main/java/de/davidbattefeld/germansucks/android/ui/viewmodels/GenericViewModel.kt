@@ -21,9 +21,9 @@ abstract class GenericViewModel(
     var favoriteWords = mutableStateListOf<Word>()
     private val shareLookupDataProvider = ShareLookupDataProvider()
 
-    fun copyWordToClipboard(currentWord: String) {
+    fun copyWordToClipboard(currentWord: Word) {
         val clipboardManager = application.applicationContext.getSystemService(ClipboardManager::class.java) as ClipboardManager
-        val clip = ClipData.newPlainText("", currentWord)
+        val clip = ClipData.newPlainText("", currentWord.sequence)
         clipboardManager.setPrimaryClip(clip)
     }
 
