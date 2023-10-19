@@ -1,5 +1,6 @@
 package de.davidbattefeld.germansucks.android.ui.favorites
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -55,7 +56,7 @@ fun FavoritesListItem(
                 )
             }
         )
-        if (expanded) {
+        AnimatedVisibility (expanded) {
             Row(
                 modifier = Modifier
                     .padding(start = 72.dp)
