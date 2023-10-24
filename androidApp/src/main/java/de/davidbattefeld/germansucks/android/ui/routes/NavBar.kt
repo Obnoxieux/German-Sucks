@@ -53,7 +53,14 @@ fun RowScope.AddItem(
             it.route == screen.route
         } == true,
         onClick = {
-            navController.navigate(screen.route)
+            navController.navigate(screen.route) {
+                navController.graph.startDestinationRoute?.let { route ->
+                    popUpTo(route) {
+                        saveState = true
+                    }
+                }
+                restoreState = true
+            }
         },
         alwaysShowLabel = true,
     )
