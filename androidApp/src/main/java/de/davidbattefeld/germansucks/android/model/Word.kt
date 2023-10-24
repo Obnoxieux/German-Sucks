@@ -1,14 +1,17 @@
 package de.davidbattefeld.germansucks.android.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "words")
+@Parcelize
 data class Word(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     var sequence: String
-) {
+) : Parcelable {
     companion object {
         const val WORD_LENGTH_SHORT = 30
         const val WORD_LENGTH_MEDIUM = 34
