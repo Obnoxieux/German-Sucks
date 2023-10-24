@@ -17,7 +17,6 @@ import de.davidbattefeld.germansucks.shared.classes.SharingMode
 
 @Composable
 fun FavoritesScreen(
-    modifier: Modifier = Modifier,
     vm: FavoritesViewModel = viewModel(factory = AppViewModelProvider.Factory),
     setFabOnClick: (() -> Unit) -> Unit,
 ) {
@@ -36,6 +35,7 @@ fun FavoritesScreen(
                 copyWord = vm::copyWordToClipboard,
                 shareWord = vm::shareWord,
                 lookupOnline = vm::lookupWordOnline,
+                deleteWord = vm::deleteWordFromFavorites,
             )
         }
         item {

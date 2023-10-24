@@ -8,6 +8,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.SavedStateHandle
 import de.davidbattefeld.germansucks.android.classes.ShareLookupDataProvider
 import de.davidbattefeld.germansucks.android.data.WordsRepository
 import de.davidbattefeld.germansucks.android.model.Word
@@ -16,9 +17,10 @@ import de.davidbattefeld.germansucks.shared.classes.SharingService
 
 abstract class GenericViewModel(
     private val application: Application,
-    protected val wordsRepository: WordsRepository
+    protected val wordsRepository: WordsRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : AndroidViewModel(application) {
-    var favoriteWords = mutableStateListOf<Word>()
+    open var favoriteWords = mutableStateListOf<Word>()
     private val shareLookupDataProvider = ShareLookupDataProvider()
 
     fun copyWordToClipboard(currentWord: Word) {
@@ -52,5 +54,11 @@ abstract class GenericViewModel(
         word.isFavorite = true
         favoriteWords.add(word)
         wordsRepository.insertWord(word)
+    }
+
+    suspend fun deleteWordFromFavorites(word: Word) {
+        word.isFavorite = false
+        favoriteWords.remove(word)
+        wordsRepository.deleteWord(word)
     }
 }

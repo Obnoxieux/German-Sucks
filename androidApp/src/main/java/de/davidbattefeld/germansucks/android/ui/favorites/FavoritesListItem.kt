@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -33,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import de.davidbattefeld.germansucks.android.model.Word
 import de.davidbattefeld.germansucks.shared.classes.SharingMode
 import de.davidbattefeld.germansucks.shared.classes.SharingService
+import kotlinx.coroutines.launch
+import kotlin.reflect.KSuspendFunction1
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,7 +44,9 @@ fun FavoritesListItem(
     copyWord: (word: Word) -> Unit,
     shareWord: (context: Context, mode: SharingMode, wordList: List<Word>) -> Unit,
     lookupOnline: (context: Context, service: SharingService, currentWord: Word) -> Unit,
+    deleteWord: KSuspendFunction1<Word, Unit>,
 ) {
+    val scope = rememberCoroutineScope()
     var expanded by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
 
@@ -99,10 +104,14 @@ fun FavoritesListItem(
                     }
                 }
                 Spacer(modifier = Modifier.weight(1.0F))
-                IconButton(onClick = {  }) {
+                IconButton(onClick = {
+                    scope.launch {
+                        deleteWord(word)
+                    }
+                }) {
                     Icon(
                         Icons.Filled.Delete,
-                        contentDescription = "Copy word",
+                        contentDescription = "delete word from favorites",
                     )
                 }
             }

@@ -1,5 +1,6 @@
 package de.davidbattefeld.germansucks.android.ui
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
@@ -13,13 +14,15 @@ object AppViewModelProvider {
         initializer {
             MainWordViewModel(
                 germanSucksApplication(),
-                germanSucksApplication().container.wordsRepository
+                germanSucksApplication().container.wordsRepository,
+                SavedStateHandle()
             )
         }
         initializer {
             FavoritesViewModel(
                 germanSucksApplication(),
-                germanSucksApplication().container.wordsRepository
+                germanSucksApplication().container.wordsRepository,
+                SavedStateHandle()
             )
         }
     }
