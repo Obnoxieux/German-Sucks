@@ -1,5 +1,6 @@
 package de.davidbattefeld.germansucks.android.ui.favorites
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -18,11 +20,13 @@ import de.davidbattefeld.germansucks.android.ui.AppViewModelProvider
 import de.davidbattefeld.germansucks.android.ui.viewmodels.FavoritesViewModel
 import de.davidbattefeld.germansucks.shared.classes.SharingMode
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoritesScreen(
     vm: FavoritesViewModel = viewModel(factory = AppViewModelProvider.Factory),
     setFabOnClick: (() -> Unit) -> Unit,
 ) {
+    val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val favoriteWords by vm.wordsList.collectAsState(listOf())
     val listState = rememberLazyListState()
@@ -42,6 +46,7 @@ fun FavoritesScreen(
                 shareWord = vm::shareWord,
                 lookupOnline = vm::lookupWordOnline,
                 deleteWord = vm::deleteWordFromFavorites,
+                scope = scope,
             )
         }
         item {

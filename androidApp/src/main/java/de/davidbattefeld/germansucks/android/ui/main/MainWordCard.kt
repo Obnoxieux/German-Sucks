@@ -31,6 +31,7 @@ import de.davidbattefeld.germansucks.android.model.Word
 import de.davidbattefeld.germansucks.android.ui.theme.GermanSucksTheme
 import de.davidbattefeld.germansucks.android.ui.viewmodels.MainWordViewModel
 import de.davidbattefeld.germansucks.shared.classes.SharingService
+import de.davidbattefeld.germansucks.shared.classes.SnackbarMessageProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -93,6 +94,7 @@ fun MainWordCard(
                     onClick = {
                     scope.launch {
                         vm.saveWordToFavorites(vm.currentWord)
+                        snackbarHostState.showSnackbar(SnackbarMessageProvider.ADD_FAVORITE)
                     }
                 }) {
                     Icon(Icons.Filled.Favorite, contentDescription = "heart")
@@ -102,7 +104,7 @@ fun MainWordCard(
                 IconButton(
                     onClick = {
                         scope.launch {
-                            snackbarHostState.showSnackbar("Copied to clipboard!")
+                            snackbarHostState.showSnackbar(SnackbarMessageProvider.COPY_TO_CLIPBOARD)
                         }
                         vm.copyWordToClipboard(vm.currentWord)
                     },

@@ -25,15 +25,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import de.davidbattefeld.germansucks.android.LocalSnackbarHostState
 import de.davidbattefeld.germansucks.android.model.Word
 import de.davidbattefeld.germansucks.shared.classes.SharingMode
 import de.davidbattefeld.germansucks.shared.classes.SharingService
+import de.davidbattefeld.germansucks.shared.classes.SnackbarMessageProvider
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.reflect.KSuspendFunction1
 
@@ -45,10 +47,11 @@ fun FavoritesListItem(
     shareWord: (context: Context, mode: SharingMode, wordList: List<Word>) -> Unit,
     lookupOnline: (context: Context, service: SharingService, currentWord: Word) -> Unit,
     deleteWord: KSuspendFunction1<Word, Unit>,
+    scope: CoroutineScope,
 ) {
-    val scope = rememberCoroutineScope()
     var expanded by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
+    val snackbarHostState = LocalSnackbarHostState.current
 
     Column {
         ListItem(
@@ -90,7 +93,12 @@ fun FavoritesListItem(
                 )
                 Spacer(modifier = Modifier.weight(1.0F))
                 Row {
-                    IconButton(onClick = { copyWord(word) }) {
+                    IconButton(onClick = {
+                        scope.launch {
+                            snackbarHostState.showSnackbar(SnackbarMessageProvider.COPY_TO_CLIPBOARD)
+                        }
+                        copyWord(word)
+                    }) {
                         Icon(
                             Icons.Filled.ContentCopy,
                             contentDescription = "Copy word",
@@ -107,6 +115,7 @@ fun FavoritesListItem(
                 IconButton(onClick = {
                     scope.launch {
                         deleteWord(word)
+                        snackbarHostState.showSnackbar(SnackbarMessageProvider.DELETE_FAVORITE)
                     }
                 }) {
                     Icon(
