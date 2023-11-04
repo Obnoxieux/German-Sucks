@@ -53,7 +53,7 @@ fun ShareCard() {
                     onClick = { vm.shareWord(
                         context = context,
                         mode = SharingMode.WithSentence,
-                        wordList = listOf(vm.currentWord.value)
+                        wordList = listOf(vm.currentWord)
                     ) },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -64,7 +64,7 @@ fun ShareCard() {
                     onClick = { vm.shareWord(
                         context = context,
                         mode = SharingMode.SingleWord,
-                        wordList = listOf(vm.currentWord.value)
+                        wordList = listOf(vm.currentWord)
                     ) },
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer,

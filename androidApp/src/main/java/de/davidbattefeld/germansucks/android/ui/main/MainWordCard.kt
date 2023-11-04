@@ -77,13 +77,13 @@ fun MainWordCard(
                 OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.DEEPL,
-                    currentWord = vm.currentWord.value
+                    currentWord = vm.currentWord
                     )
                 }) { Text("DeepL") }
                 OutlinedButton(onClick = { vm.lookupWordOnline(
                     context = context,
                     service = SharingService.GOOGLE_TRANSLATE,
-                    currentWord = vm.currentWord.value
+                    currentWord = vm.currentWord
                     )
                 }) { Text("G Translate") }
             }
@@ -92,7 +92,7 @@ fun MainWordCard(
                 Button(
                     onClick = {
                     scope.launch {
-                        vm.saveWordToFavorites(vm.currentWord.value)
+                        vm.saveWordToFavorites(vm.currentWord)
                     }
                 }) {
                     Icon(Icons.Filled.Favorite, contentDescription = "heart")
@@ -104,7 +104,7 @@ fun MainWordCard(
                         scope.launch {
                             snackbarHostState.showSnackbar("Copied to clipboard!")
                         }
-                        vm.copyWordToClipboard(vm.currentWord.value)
+                        vm.copyWordToClipboard(vm.currentWord)
                     },
                 ) { Icon(Icons.Filled.ContentCopy, contentDescription = "copy word to clipboard") }
             }

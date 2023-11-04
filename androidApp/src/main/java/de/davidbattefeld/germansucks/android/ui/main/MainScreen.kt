@@ -34,7 +34,7 @@ fun MainScreen(
         }
         item {
             MainWordCard(
-                word = mainWordViewModel.currentWord.value,
+                word = mainWordViewModel.currentWord,
                 scope = scope
             )
         }
