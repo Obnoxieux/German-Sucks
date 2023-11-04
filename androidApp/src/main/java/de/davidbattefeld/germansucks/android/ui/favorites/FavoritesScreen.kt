@@ -4,9 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -21,11 +24,14 @@ fun FavoritesScreen(
     setFabOnClick: (() -> Unit) -> Unit,
 ) {
     val context = LocalContext.current
+    val favoriteWords by vm.wordsList.collectAsState(listOf())
+    val listState = rememberLazyListState()
     LazyColumn(
+        state = listState,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(
-            items = vm.favoriteWords,
+            items = favoriteWords,
             key = { word ->
                 word.id
             }
@@ -39,7 +45,7 @@ fun FavoritesScreen(
             )
         }
         item {
-            if (vm.favoriteWords.isEmpty()) {
+            if (favoriteWords.isEmpty()) {
                 Text(
                     text = "You haven't saved any words as favorites yet.",
                     modifier = Modifier.padding(16.dp)
@@ -51,7 +57,7 @@ fun FavoritesScreen(
         setFabOnClick { vm.shareWord(
             context = context,
             mode = SharingMode.List,
-            wordList = vm.favoriteWords
+            wordList = favoriteWords
         ) }
     }
 }
