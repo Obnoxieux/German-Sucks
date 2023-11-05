@@ -10,7 +10,7 @@ import de.davidbattefeld.germansucks.android.model.Word
 
 @Database(
     entities = [Word::class, Stats::class],
-    version = 1,
+    version = 2,
     autoMigrations = [
         AutoMigration (from = 1, to = 2)
     ]
