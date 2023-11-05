@@ -25,7 +25,8 @@ fun MainScreen(
     val scope = rememberCoroutineScope()
     LazyColumn(
         modifier = Modifier
-            .padding(15.dp),
+            .padding(horizontal = 15.dp)
+            .padding(bottom = 80.dp), // height of FAB
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {

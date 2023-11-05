@@ -32,7 +32,9 @@ fun FavoritesScreen(
     val listState = rememberLazyListState()
     LazyColumn(
         state = listState,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .padding(bottom = 80.dp), // height of FAB
     ) {
         items(
             items = favoriteWords,
