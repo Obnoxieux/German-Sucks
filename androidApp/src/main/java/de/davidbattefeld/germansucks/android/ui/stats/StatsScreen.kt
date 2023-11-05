@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun StatsScreen() {
-    Text(text = "Content")
+    Text(text = "Not yet implemented")
 }

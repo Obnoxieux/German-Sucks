@@ -42,7 +42,7 @@ kotlin {
 
 android {
     namespace = "de.davidbattefeld.germansucks.shared"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         minSdk = 31
     }
