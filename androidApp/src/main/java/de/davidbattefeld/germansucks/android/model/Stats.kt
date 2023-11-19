@@ -8,7 +8,7 @@ import de.davidbattefeld.germansucks.shared.model.Stats
 data class Stats(
     @PrimaryKey
     override var uniqueID: String,
-    override var totalWordsSeen: Int = 0,
+    override var totalWordsSeen: Int = 1, //slightly off default value, but prevents division by zero
     override var totalCharactersSeen: Int = 0,
     override var timesClickedLookUp: Int = 0,
     override var totalWordsShared: Int = 0,
