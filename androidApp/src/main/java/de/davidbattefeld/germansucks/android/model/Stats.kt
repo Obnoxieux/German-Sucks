@@ -2,16 +2,21 @@ package de.davidbattefeld.germansucks.android.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import de.davidbattefeld.germansucks.shared.model.Stats
 
 @Entity(tableName = "stats")
 data class Stats(
     @PrimaryKey
-    var uniqueID: String,
-    var totalWordsSeen: Int = 1,
-    var totalCharactersSeen: Int = 0,
-    var timesClickedLookUp: Int = 0,
-    var totalWordsShared: Int = 0,
-    var longestWordLengthDiscovered: Int = 0,
-) {
-    var percentageOfWordsLookedUp = timesClickedLookUp.toDouble() / totalWordsSeen
+    override var uniqueID: String,
+    override var totalWordsSeen: Int = 1,
+    override var totalCharactersSeen: Int = 0,
+    override var timesClickedLookUp: Int = 0,
+    override var totalWordsShared: Int = 0,
+    override var longestWordLengthDiscovered: Int = 0,
+): Stats {
+    override var percentageOfWordsLookedUp = timesClickedLookUp.toDouble() / totalWordsSeen
+
+    companion object {
+        const val DEFAULT_ID = "gs-stats"
+    }
 }
