@@ -18,25 +18,30 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import de.davidbattefeld.germansucks.android.LocalSnackbarHostState
 import de.davidbattefeld.germansucks.android.ui.routes.BottomNavGraph
 import de.davidbattefeld.germansucks.android.ui.routes.GermanSucksRoute
+import de.davidbattefeld.germansucks.android.ui.viewmodels.AppViewModel
 import ui.NavBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GermanSucksApp(
     navController: NavHostController,
+    vm: AppViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     val (fabOnClick, setFabOnClick) = remember { mutableStateOf<(() -> Unit)?>(null) }
     val snackbarHostState = remember { SnackbarHostState() }
+
     CompositionLocalProvider(LocalSnackbarHostState provides snackbarHostState) {
         val currentRoute = navController
             .currentBackStackEntryFlow
@@ -101,6 +106,9 @@ fun GermanSucksApp(
                 modifier = Modifier.padding(padding),
                 setFabOnClick = setFabOnClick,
             )
+            LaunchedEffect(Unit) {
+                vm.createStatsObjectIfNotExists()
+            }
         }
     }
 }
