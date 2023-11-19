@@ -7,6 +7,7 @@ import android.content.Context
  */
 interface AppContainer {
     val wordsRepository: WordsRepository
+    val statsRepository: StatsRepository
 }
 
 /**
@@ -18,5 +19,9 @@ class AppDataContainer(private val context: Context) : AppContainer {
      */
     override val wordsRepository: WordsRepository by lazy {
         OfflineWordsRepository(WordDatabase.getDatabase(context).wordDao())
+    }
+
+    override val statsRepository: StatsRepository by lazy {
+        OfflineStatsRepository(WordDatabase.getDatabase(context).statsDao())
     }
 }

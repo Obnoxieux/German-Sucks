@@ -1,0 +1,114 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "03e5c88920fb7a7c327cb57bbe2e1bce",
+    "entities": [
+      {
+        "tableName": "words",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sequence` TEXT NOT NULL, `length` INTEGER NOT NULL, `isFavorite` INTEGER NOT NULL, `firstCharacter` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sequence",
+            "columnName": "sequence",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "length",
+            "columnName": "length",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstCharacter",
+            "columnName": "firstCharacter",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "stats",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uniqueID` TEXT NOT NULL, `totalWordsSeen` INTEGER NOT NULL, `totalCharactersSeen` INTEGER NOT NULL, `timesClickedLookUp` INTEGER NOT NULL, `totalWordsShared` INTEGER NOT NULL, `longestWordLengthDiscovered` INTEGER NOT NULL, `percentageOfWordsLookedUp` REAL NOT NULL, PRIMARY KEY(`uniqueID`))",
+        "fields": [
+          {
+            "fieldPath": "uniqueID",
+            "columnName": "uniqueID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalWordsSeen",
+            "columnName": "totalWordsSeen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalCharactersSeen",
+            "columnName": "totalCharactersSeen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timesClickedLookUp",
+            "columnName": "timesClickedLookUp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalWordsShared",
+            "columnName": "totalWordsShared",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longestWordLengthDiscovered",
+            "columnName": "longestWordLengthDiscovered",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "percentageOfWordsLookedUp",
+            "columnName": "percentageOfWordsLookedUp",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uniqueID"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '03e5c88920fb7a7c327cb57bbe2e1bce')"
+    ]
+  }
+}
