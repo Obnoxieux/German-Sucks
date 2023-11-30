@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -35,10 +35,10 @@ fun StatsScreen(
     vm: StatsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     val stats by vm.stats.collectAsState(initial = Stats("INITIAL"))
-    var showWordCharacterCount by remember { mutableStateOf(true) }
-    var showLookupCount by remember { mutableStateOf(false) }
-    var showShareCount by remember { mutableStateOf(false) }
-    var showMaxWordLength by remember { mutableStateOf(false) }
+    var showWordCharacterCount by rememberSaveable { mutableStateOf(true) }
+    var showLookupCount by rememberSaveable { mutableStateOf(false) }
+    var showShareCount by rememberSaveable { mutableStateOf(false) }
+    var showMaxWordLength by rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = Modifier.padding(15.dp),

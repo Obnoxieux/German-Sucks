@@ -1,6 +1,5 @@
 package de.davidbattefeld.germansucks.android.ui.favorites
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,7 +19,6 @@ import de.davidbattefeld.germansucks.android.ui.AppViewModelProvider
 import de.davidbattefeld.germansucks.android.ui.viewmodels.FavoritesViewModel
 import de.davidbattefeld.germansucks.shared.classes.SharingMode
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoritesScreen(
     vm: FavoritesViewModel = viewModel(factory = AppViewModelProvider.Factory),
