@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun StatsCard(
     title: String,
-    value: Int,
+    value: Number,
     bodytext: String,
     color: Color,
     show: Boolean,
@@ -47,7 +47,10 @@ fun StatsCard(
                     textAlign = TextAlign.Center,
                 )
                 Text(
-                    text = value.toString(),
+                    text = value.toString().plus(when (title) {
+                        "Lookup Percentage" -> "%"
+                        else -> { "" }
+                    }),
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Black
                 )

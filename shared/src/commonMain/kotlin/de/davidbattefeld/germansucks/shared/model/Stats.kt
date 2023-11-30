@@ -8,4 +8,6 @@ interface Stats {
     var totalWordsShared: Int
     var longestWordLengthDiscovered: Int
     var percentageOfWordsLookedUp: Double
+
+    fun getPercentageLookedUp(): Number
 }

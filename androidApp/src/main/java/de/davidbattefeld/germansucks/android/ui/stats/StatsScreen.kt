@@ -63,7 +63,9 @@ fun StatsScreen(
                                 modifier = Modifier.size(FilterChipDefaults.IconSize)
                             )
                         }
-                    } else { null },
+                    } else {
+                        null
+                    },
                 )
             }
             item {
@@ -79,7 +81,9 @@ fun StatsScreen(
                                 modifier = Modifier.size(FilterChipDefaults.IconSize)
                             )
                         }
-                    } else { null },
+                    } else {
+                        null
+                    },
                 )
             }
             item {
@@ -95,7 +99,9 @@ fun StatsScreen(
                                 modifier = Modifier.size(FilterChipDefaults.IconSize)
                             )
                         }
-                    } else { null },
+                    } else {
+                        null
+                    },
                 )
             }
             item {
@@ -111,7 +117,9 @@ fun StatsScreen(
                                 modifier = Modifier.size(FilterChipDefaults.IconSize)
                             )
                         }
-                    } else { null },
+                    } else {
+                        null
+                    },
                 )
             }
         }
@@ -153,6 +161,15 @@ fun StatsScreen(
                     value = stats?.timesClickedLookUp ?: 0,
                     bodytext = "Excuse me this words means WHAT? No shame in getting assistance with the words in this app - so don't worry.",
                     color = MaterialTheme.colorScheme.surfaceVariant,
+                    show = showLookupCount,
+                )
+            }
+            item {
+                StatsCard(
+                    title = "Lookup Percentage",
+                    value = stats?.getPercentageLookedUp() ?: 0,
+                    bodytext = "How many of the seemingly endless monstrosities did you need help with?",
+                    color = MaterialTheme.colorScheme.primaryContainer,
                     show = showLookupCount,
                 )
             }
