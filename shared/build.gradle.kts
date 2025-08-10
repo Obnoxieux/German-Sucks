@@ -11,7 +11,7 @@ kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
@@ -42,8 +42,13 @@ kotlin {
 
 android {
     namespace = "de.davidbattefeld.germansucks.shared"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 31
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

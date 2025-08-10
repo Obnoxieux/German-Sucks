@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "de.davidbattefeld.germansucks.android"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "de.davidbattefeld.germansucks"
         minSdk = 31
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 9
         versionName = "0.8.2"
 
