@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.PsychologyAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
@@ -58,7 +58,7 @@ fun MainWordCard(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(imageVector = Icons.Filled.MenuBook, contentDescription = null)
+                Icon(imageVector = Icons.AutoMirrored.Filled.MenuBook, contentDescription = null)
                 Text("Your word is...",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier.padding(start = 12.dp))
