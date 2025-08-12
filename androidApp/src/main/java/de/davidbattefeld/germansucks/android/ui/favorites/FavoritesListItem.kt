@@ -56,8 +56,8 @@ fun FavoritesListItem(
     Column {
         ListItem(
             modifier = Modifier.clickable { expanded = !expanded },
-            headlineText = { Text(word.sequence) },
-            supportingText = { Text("${word.length} characters") },
+            headlineContent = { Text(word.sequence) },
+            supportingContent = { Text("${word.length} characters") },
             trailingContent = {
                 Icon(
                     if (expanded) { Icons.Filled.ExpandLess } else { Icons.Filled.ExpandMore },

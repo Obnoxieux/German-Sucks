@@ -18,3 +18,4 @@ local.properties
 /iosApp/German Sucks iOS.xcodeproj/project.xcworkspace/xcuserdata/
 *.xcbkptlist
 /app/
+/.kotlin/
